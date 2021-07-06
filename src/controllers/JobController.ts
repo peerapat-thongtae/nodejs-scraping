@@ -53,7 +53,7 @@ export class JobController {
       const $ = cheerio.load(html);
       const jobHtml = Array.from($('.card'));
       const jobs:Array<JobInterface> = jobHtml.map((ele) => ({
-            link : $(ele).attr('href'),
+            link : 'https://jobs.blognone.com'+$(ele).attr('href'),
             jobName : $(ele).find('div[class="position-relative d-flex"] > div.col > h3 > span').first().text(),
             companyName : $(ele).find('div[class="position-relative d-flex"] > div.col > h3').next().next().next().text(),
             location : $(ele).find('div[class="position-relative d-flex"] > div.col > h3').next().next().next().next().text(),
