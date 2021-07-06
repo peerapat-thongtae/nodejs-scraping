@@ -34,7 +34,7 @@
     "typeorm": "0.2.34"
   },
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "node src/app.js",
     "dev": "nodemon --config nodemon.json src/app.ts",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   }

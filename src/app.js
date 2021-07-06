@@ -1,19 +1,19 @@
-import express, { json } from 'express';
-import axios from 'axios';
-import { load } from 'cheerio';
+const express = require('express');
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 const app = express();
 const PORT = 3000;
 
-app.use(json());
+app.use(express.json());
 
 app.get('/' , async(req , res) => {
      try {
-          let joball:Array<Object> = [];
+          var joball = [];
           for(let i = 1 ; i < 3 ; i++) {
                const data = await axios.get('https://www.jobthai.com/th/jobs?jobtype=7&orderBy=UPDATED_AT_DESC&page='+i);
                const html = data.data;
-               const $ = load(html);
+               const $ = cheerio.load(html);
                const jobHtml = Array.from($('.msklqa-8'));
                const jobs = jobHtml.map((ele) => ({
                     link : $(ele).find('a').attr('href'),
@@ -40,7 +40,7 @@ app.get('/test' , async(req , res) => {
      try {
           const data = await axios.get('https://th.jobsdb.com/th/th/jobs/%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B9%84%E0%B8%AD%E0%B8%97%E0%B8%B5/1');
           const html = data.data;
-          const $ = load(html);
+          const $ = cheerio.load(html);
           const jobHtml = Array.from($(`div[data-automation="jobListing"]`).find('article'));
           const jobs = jobHtml.map((ele) => ({
                link : $(ele).find('.DvvsL_0').attr('href'),
@@ -64,7 +64,7 @@ app.get('/test2', async(req , res) => {
      try {
           const data = await axios.get('https://jobs.blognone.com/search');
           const html = data.data;
-          const $ = load(html);
+          const $ = cheerio.load(html);
           const jobHtml = Array.from($('.card'));
           const jobs = jobHtml.map((ele) => ({
                link : $(ele).attr('href'),
