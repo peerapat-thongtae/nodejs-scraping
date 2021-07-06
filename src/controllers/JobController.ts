@@ -13,7 +13,7 @@ export class JobController {
       const $ = cheerio.load(html);
       const jobHtml:Array<any> = Array.from($('.msklqa-8'));
       const jobs:Array<JobInterface> = jobHtml.map((ele) => ({
-          link : $(ele).find('a').attr('href'),
+          link : 'www.jobthai.com'+$(ele).find('a').attr('href'),
           jobName : $(ele).find('.frNqfE').text(),
           companyName : $(ele).find('.gWWIiL').first().text(),
           location : $(ele).find('#location-text').text(),
@@ -33,7 +33,7 @@ export class JobController {
       const $ = cheerio.load(html);
       const jobHtml = Array.from($(`div[data-automation="jobListing"]`).find('article'));
       const jobs:Array<JobInterface> = jobHtml.map((ele) => ({
-        link : $(ele).find('.DvvsL_0').attr('href'),
+        link : 'th.jobsdb.com'+$(ele).find('.DvvsL_0').attr('href'),
         jobName : $(ele).find('.DvvsL_0').find('div').text(),
         companyName : $(ele).find(`div[data-automation="job-card-logo"] > img`).attr('alt'),
         location : $(ele).find('div[data-automation="job-card-selling-points"]').prev().text(),
