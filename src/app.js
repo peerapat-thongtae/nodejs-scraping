@@ -83,4 +83,4 @@ app.get('/test2', async(req , res) => {
      }
 });
 
-app.listen(PORT , () => console.log('y'));
+app.listen(PORT , () =>   console.log(`Application is live and listening on port ${PORT}`))
