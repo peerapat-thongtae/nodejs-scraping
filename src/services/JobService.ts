@@ -3,7 +3,7 @@ import express from 'express';
 
 export const scrapingJobThai = async (page:number) => {
   try {
-    const data = await axios.get('https://www.jobthai.com/th/jobs?jobtype=7&orderBy=UPDATED_AT_DESC&page='+page);
+    const data = await axios.get('https://www.jobthai.com/th/jobs?subjobtype=146%2C155&orderBy=UPDATED_AT_DESC&page='+page);
     const html = data.data;
     return html;
   } catch (e) {
@@ -13,7 +13,7 @@ export const scrapingJobThai = async (page:number) => {
 
 export const scrapingJobsDB = async (page:number) => {
   try {
-    const data = await axios.get(`https://th.jobsdb.com/th/jobs/information-technology/${page}`);
+    const data = await axios.get(`https://th.jobsdb.com/th/job-list/information-technology/programming-software-development/${page}?sort=createdAt`);
     const html = data.data;
     return html;
   } catch (e) {
